@@ -1,7 +1,0 @@
-        PROGRAM BICICLETA
-
-        END PROGRAM BICICLETA
-
-        SUBROUTINE conta()
-
-        END SUBROUTINE conta
