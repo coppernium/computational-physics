@@ -1,9 +1,8 @@
         program bicicleta
-            real*8 vel(1000), tempo(1000)
+            real*8 vel(100000), tempo(100000)
             call variaveis(m,P,dt,t,n,vel,tempo)
             call calculo(m,P,dt,n,vel,tempo)
             call dados(n,vel,tempo)
-        
         end program bicicleta
         
         subroutine variaveis(m,P,dt,t,n,vel,tempo)
@@ -20,7 +19,7 @@
 
         subroutine calculo(m,P,dt,n,vel,tempo)
             real*8 vel(n), tempo(n)
-            do i=1,n-1
+            do i=1,n
                 vel(i+1) = vel(i) + (P*dt)/(m*vel(i))
                 tempo(i+1) = tempo(i) + dt
             end do
@@ -31,7 +30,8 @@
             real*8 vel(n), tempo(n)
             open(unit=1,file="dados.dat")
             do i=1,n
-                write(1,*) tempo(i), vel(i)
+                write(1,7) tempo(i), vel(i)
+7               format(F10.3, ",", F10.3)
             end do 
             close(1)
         end subroutine dados
