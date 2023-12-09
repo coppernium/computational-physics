@@ -4,7 +4,7 @@
             call calculo(m,P,dt,n,vel,tempo)
             call dados(n,vel,tempo)
         end program bicicleta
-        
+            
         subroutine variaveis(m,P,dt,t,n,vel,tempo)
             real*8 vel(1), tempo(1)
             m = 80 !Kg
