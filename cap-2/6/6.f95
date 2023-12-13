@@ -1,5 +1,5 @@
             program main
-                real*8 posx(10000), posy(10000), velx(10000), vely(10000), temp(10000)
+                real*8 posx(100000), posy(100000), velx(100000), vely(100000), temp(100000)
                 call ini_variables(n,dt,t,B2, m,g,velx,vely,posx,posy,temp)
                 call calc_euler(n,dt, B2, m,g,velx, vely,posx,posy,temp)
                 call save_data(n,velx,vely,posx,posy,temp)
@@ -9,7 +9,7 @@
             subroutine ini_variables(n,dt,t,B2, m,g,velx,vely,posx,posy,temp)
                 real*8 posx(1),posy(1), velx(1), vely(1), temp(1)
                 t = 300
-                dt = 0.1
+                dt = 0.01
                 m = 30
                 g = 9.81
                 n = t/dt
@@ -35,7 +35,7 @@
                     vely(i+1) = vely(i) -g*dt/m - fy*dt/m
                     !marca o tempo
                     temp(i+1) = temp(i) + dt
-                    !if (posy(i) +vely(i)*dt .LE. 0) exit
+                    if ((i .GE. 5) .AND. (posy(i+1) .LE. 0)) exit
                 end do
             end subroutine calc_euler
 
