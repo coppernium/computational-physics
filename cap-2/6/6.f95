@@ -43,7 +43,7 @@
                 real*8 velx(n), vely(n), posx(n), posy(n), temp(n)
                 open(unit=1,file="data1.data")
                 do i =1,n-1
-                    if ((i .GE. 20) .AND. (posy(i) .LE. 0)) exit
+                    if ((i .GE. 5) .AND. (posy(i) .LE. 0)) exit
                     write(1,7) temp(i), velx(i), vely(i), posx(i), posy(i)
 7                   format(F10.3,",",F10.3,",",F10.3,",",F10.3,",",F10.3)
                 end do
