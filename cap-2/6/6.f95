@@ -3,6 +3,7 @@
                 call ini_variables(n,dt,t,B2, m,g,velx,vely,posx,posy,temp)
                 call calc_euler(n,dt, B2, m,g,velx, vely,posx,posy,temp)
                 call save_data(n,velx,vely,posx,posy,temp)
+
             end program main
 
             subroutine ini_variables(n,dt,t,B2, m,g,velx,vely,posx,posy,temp)
@@ -34,7 +35,7 @@
                     vely(i+1) = vely(i) -g*dt/m - fy*dt/m
                     !marca o tempo
                     temp(i+1) = temp(i) + dt
-                    if (posy(i) .LE. 0) stop
+                    !if (posy(i) +vely(i)*dt .LE. 0) exit
                 end do
             end subroutine calc_euler
 
@@ -42,6 +43,7 @@
                 real*8 velx(n), vely(n), posx(n), posy(n), temp(n)
                 open(unit=1,file="data1.data")
                 do i =1,n-1
+                    if ((i .GE. 20) .AND. (posy(i) .LE. 0)) exit
                     write(1,7) temp(i), velx(i), vely(i), posx(i), posy(i)
 7                   format(F10.3,",",F10.3,",",F10.3,",",F10.3,",",F10.3)
                 end do
