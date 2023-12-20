@@ -16,25 +16,35 @@ subroutine initialize(dt,n,B,posx,posy)
 end subroutine initialize
 
 subroutine calc_euler(dt,n,B,posx,posy)
-  real*8 posx(n), posy(n), velx(n), vely(n)
+  real*8 posx(n), posy(n), velx(n), vely(n), atr
   ! Variaveis
-  g = 9.81
   pi = acos(-1.00)
   velx(1)=700*cos(pi/4)
   vely(1)=700*sin(pi/4)
+  !
   ! Simulação
   do i=1,n-1
+    open(unit=9,file="valores_g.txt")
+
+    do j=1,7
+      read(9,*) altura, glista
+      if (posy(i) .GE. altura*1000) then
+        g = glista
+      end if
+    end do
     ! Atrito
-    den = (1 - ((6.5/1000)*posy(i)/250))**(2.5)
-    Fat = -B*sqrt(velx(i)**2 + vely(i)**2)
+    den = (1 - ((6.5/1000)*posy(i)/300))**(2.5)
+    atr = -B*den*sqrt(velx(i)**2 + vely(i)**2)
+
     ! Calculo de x
-    velx(i+1) = velx(i) + Fat*velx(i)*dt
+    velx(i+1) = velx(i) + atr*velx(i)*dt
     posx(i+1) = posx(i) + velx(i)*dt
     !Calculo de y
-    vely(i+1) = vely(i) + Fat*vely(i)*dt - g*dt
+    vely(i+1) = vely(i) + atr*vely(i)*dt - g*dt
     posy(i+1) = posy(i) + vely(i)*dt
     ! Para quando y(i) =0
     if ((i .GT. 5) .AND. (posy(i+1) .LE. 0)) exit
+    close(9)
 
   end do
 end subroutine calc_euler
