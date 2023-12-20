@@ -1,0 +1,10 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
+dados = pd.read_csv("dados1.data", header=None, sep=",")
+x = dados[0]
+y = dados[1]
+plt.xlim(0,150)
+plt.ylim(0,30)
+plt.plot(x,y)
+plt.show()

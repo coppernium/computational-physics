@@ -33,7 +33,7 @@ subroutine calc_euler(dt,n,B,posx,posy)
       end if
     end do
     ! Atrito
-    den = (1 - ((6.5/1000)*posy(i)/300))**(2.5)
+    den = (1 - (0.0065*posy(i)/300))**(2.5)
     atr = -B*den*sqrt(velx(i)**2 + vely(i)**2)
     ! Calculo de x
     velx(i+1) = velx(i) + atr*velx(i)*dt
