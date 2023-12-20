@@ -8,7 +8,7 @@ end program main
 subroutine initialize(dt,n,B,posx,posy)
   real*8 posx(1), posy(1)
     dt = 0.1
-    B = 4/100000
+    B = 0.00004
     t_simu = 300
     n = t_simu/dt
     posx(1) = 0
@@ -35,7 +35,6 @@ subroutine calc_euler(dt,n,B,posx,posy)
     ! Atrito
     den = (1 - ((6.5/1000)*posy(i)/300))**(2.5)
     atr = -B*den*sqrt(velx(i)**2 + vely(i)**2)
-
     ! Calculo de x
     velx(i+1) = velx(i) + atr*velx(i)*dt
     posx(i+1) = posx(i) + velx(i)*dt
