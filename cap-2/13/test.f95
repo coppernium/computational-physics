@@ -52,7 +52,7 @@ end subroutine calc
 subroutine dados(n,posx,posy,velx,vely)
   real*8 posx(n), posy(n), velx(n), vely(n)
 
-  open(unit=1,file="dados1.data")
+  open(unit=1,file="dados_test.data")
   do i=1,n-1
     write(1,7) posx(i), posy(i)
 7   format(F10.3, ",", F10.3)
