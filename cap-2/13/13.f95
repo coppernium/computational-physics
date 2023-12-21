@@ -11,12 +11,13 @@ subroutine initialize(dt,n,posx,posy,velx,vely,temp)
   ! Variaveis
   t = 300
   dt = 0.01
+  theta = 35
   n = t/dt
   pi = acos(-1.00)
   posx(1) = 0
   posy(1) = 0
-  velx(1) = 50*cos(0.61)
-  vely(1) = 50*sin(0.61)
+  velx(1) = 50*cos(pi*theta/180)
+  vely(1) = 50*sin(pi*theta/180)
   temp(1) = 0
 end subroutine initialize
 
@@ -24,7 +25,7 @@ subroutine calc(dt,n,posx,posy,velx,vely,temp)
   real*8 posx(n), posy(n), velx(n), vely(n), temp(n)
   ! Variaveis
   g = 9.81
-  velw = 4.5
+  velw = 0
   ! Simulação
 
   do i =1,n-1
@@ -52,11 +53,15 @@ end subroutine calc
 subroutine dados(n,posx,posy,velx,vely)
   real*8 posx(n), posy(n), velx(n), vely(n)
 
-  open(unit=1,file="dados1.data")
+  open(unit=1,file="maxdist.data")
   do i=1,n-1
     write(1,7) posx(i), posy(i)
 7   format(F10.3, ",", F10.3)
-    if ((i .GT. 5) .AND. (posy(i+1) .LE. 0)) exit
+    if ((i .GT. 5) .AND. (posy(i+1) .LE. 0)) then
+      write(*,8) posx(i)
+8     format(F10.3)
+      exit
+    end if
   end do
   close(1)
 end subroutine dados
