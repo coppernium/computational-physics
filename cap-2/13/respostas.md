@@ -7,3 +7,5 @@ tailwind
 
 headwind
 27 degrees (86.756 m)
+
+### c)
