@@ -31,7 +31,7 @@ subroutine calc(dt,n,m,l,g,theta,dtheta,temp,E)
     dtheta(i+1) = dtheta(i) - g*theta(i)*dt/l
     theta(i+1) = theta(i) + dtheta(i+1)*dt
 
-    E(i+1) = E(i) + m*g*l*(dtheta(i+1)**2 + g*(theta(i)**2)/l)*(dt**2)/2
+    E(i+1) = E(i) + m*g*l*(dtheta(i)**2 + g*(theta(i)**2)/l)*(dt**2)/2
     temp(i+1) = temp(i) + dt
   end do
 
