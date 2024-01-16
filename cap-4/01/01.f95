@@ -11,14 +11,14 @@ end program main
 subroutine init(dt,n,x,y,t)
     real*8 x(1), y(1), t(1)
     AU = 1
-    yr = 1
-    t_sim = 2*yr
+    yr = 1 
+    t_sim = 1*yr
     dt = 0.002*yr
     n = int(t_sim/dt)
 
     ! Initial pos
     x(1) = 1*AU
-    y(1) = 1*AU
+    y(1) = 0*AU
     t(1) = 0
 end subroutine init
 
@@ -47,7 +47,7 @@ subroutine save_data(dt,n,x,y,t)
     
     do i=1,n
         write(1,7) t(i), x(i), y(i)
-7       format(F10.3, F10.3, F10.3)
+7       format(E10.3,",", E10.3,",", E10.3)
     end do
     close(1)
 
