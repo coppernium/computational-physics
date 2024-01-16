@@ -5,6 +5,7 @@ program main
     call init(dt,n,x,y,t)
     call calc(dt,n,x,y,t)
     call save_data(dt,n,x,y,t)
+    call execute_command_line('python3 ' // "plot-01.py")
 end program main
 
 
@@ -12,7 +13,7 @@ subroutine init(dt,n,x,y,t)
     real*8 x(1), y(1), t(1)
     AU = 1
     yr = 1 
-    t_sim = 1*yr
+    t_sim = 5*yr
     dt = 0.002*yr
     n = int(t_sim/dt)
 
