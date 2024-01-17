@@ -4,11 +4,11 @@ import pandas as pd
 import numpy as np
 
 
-df = pd.read_csv("~/Documents/computational-physics/cap-4/01/dados1.data", header=None, sep=",")
+df = pd.read_csv("dados1.data", header=None, sep=",")
 x = df[1]
 y = df[2]
 
-scale = 2
+scale = 10
 
 x_data = []
 y_data = []
