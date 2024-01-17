@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 
-df = pd.read_csv("~/Documents/computational-physics/cap-4/04/dados.data", header=None, sep=",")
+df = pd.read_csv("~/Documents/computational-physics/cap-4/05/orbit.data", header=None, sep=",")
 t = df[0]
 x = df[1]
 y = df[2]
@@ -32,7 +32,7 @@ ax.plot(0,0, 'o', markersize=8, color="red")
 
 # Plota texto
 
-time_template = 'time = %.3f Years'
+time_template = 'time = %.2f Years'
 
 planet_x = 0
 planet_y = 0
@@ -53,6 +53,6 @@ def animate(i):
     time_text.set_text(time_template % t[i]) 
 
 
-animation = FuncAnimation(fig, animate, interval=100,init_func=init,frames=len(df[0]),repeat=True)
+animation = FuncAnimation(fig, animate, interval=10,init_func=init,frames=len(df[0]),repeat=True)
 plt.show()
 

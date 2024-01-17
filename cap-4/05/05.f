@@ -13,13 +13,13 @@
             real*8 x(1), y(1), t(1)
             AU = 1
             yr = 1
-            dt = 0.01*yr
+            dt = 0.001*yr
             t_sim = 10*yr
             n = int(t_sim/dt)
 
             x(1) = 1*AU
-            y(1) = 0
-            t(1) = 0
+            y(1) = 0.00
+            t(1) = 0.00
 
         end subroutine init
 
@@ -29,7 +29,7 @@
 
             pi = acos(-1.00)
             vx(1) = 0
-            vy(1) = 2*pi
+            vy(1) = 5
 
             do i = 1,n
                 r = sqrt(x(i)**2 + y(i)**2)
@@ -43,7 +43,7 @@
                 vel = sqrt(vx(i+1)**2 + vy(i+1)**2)
                 K(i) = 0.5*(vel**2)
                 L(i) = r*vel
-                V(i) = 1/r + (L(i)**2)/r**2
+                V(i) = -0.5*x(i)/r**2 - 0.5*y(i)/r**2 + (L(i)**2)/r**2
                 E(i) = K(i) + V(i)
 
                

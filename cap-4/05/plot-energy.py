@@ -7,6 +7,7 @@ t = df[0]
 E = df[1]
 
 
+
 plt.plot(t,E)
 plt.show()
 
