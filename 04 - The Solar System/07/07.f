@@ -20,18 +20,17 @@
             real*16 M
 
             M = 5.972d24
-C           pode dar ruim por ser um numero mt pequeno
             G = 6.67d-8
             AU = 1.495d11
-            yr = 365*3600
+            yr = 3600*365
             dt = 0.001*yr
             t_sim = 10*yr
             n = t_sim/dt
             
-            x1(1) = AU + 0.01*AU
-            y1(1) = AU 
+            x1(1) = AU + 5*AU
+            y1(1) = AU*0
             x2(1) = AU
-            y2(1) = AU
+            y2(1) = AU*0
             t(1) = 0*yr
 
 
@@ -42,12 +41,12 @@ C           pode dar ruim por ser um numero mt pequeno
             real*16 x1(n), y1(n), x2(n), y2(n)
             real*16 vx1(n), vy1(n), vx2(n), vy2(n)
             real*16 t(n)
-            real*16 M
+            real*16 M, M1, M2
 
             M1 = M
-            M2 = M*1000000
+            M2 = M*(1e6)
             vx1(1) = 0
-            vy1(1) = 0
+            vy1(1) = (1e5)*(AU/yr)
             vx2(1) = 0
             vy2(1) = 0
  
@@ -67,10 +66,7 @@ C           pode dar ruim por ser um numero mt pequeno
                 vy2(i+1) = vy2(i) - dt*G*M1*y2(i)/r2**3
                 y2(i+1) = y2(i) + dt*vy2(i+1)
 
-
-
-
-                t(i+1) = t(i) + dt
+                t(i+1) = t(i) + 1
             end do
 
         end subroutine calc
